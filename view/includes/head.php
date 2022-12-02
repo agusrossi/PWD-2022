@@ -17,14 +17,6 @@
     <link rel="stylesheet" href="./assets/css/main.css">
 
     <!-- libreria jQuery_Easyui -->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/jq_easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="assets/jq_easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="assets/jq_easyui/themes/color.css">
-    <link rel="stylesheet" type="text/css" href="assets/jq_easyui/demo/demo.css">
-    <script type="text/javascript" src="assets/jq_easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/jq_easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="https://www.jeasyui.com/easyui/datagrid-detailview.js"></script> -->
-
 
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
@@ -43,7 +35,8 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-
+    <!-- sweet alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>

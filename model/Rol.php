@@ -52,7 +52,7 @@ class Rol extends BaseDatos {
                 }
             }
         } else {
-            $this->setmensajeoperacion("Especies->listar: " . $this->getError());
+            $this->setmensajeoperacion( $this->getError());
         }
         return $resp;
     }
@@ -65,10 +65,10 @@ class Rol extends BaseDatos {
                 $this->setidrol($elid);
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Especie->insertar: " . $this->getError());
+                $this->setmensajeoperacion( $this->getError());
             }
         } else {
-            $this->setmensajeoperacion("Especie->insertar: " . $this->getError());
+            $this->setmensajeoperacion( $this->getError());
         }
         return $resp;
     }
@@ -82,10 +82,10 @@ class Rol extends BaseDatos {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Especie->modificar: " . $this->getError());
+                $this->setmensajeoperacion( $this->getError());
             }
         } else {
-            $this->setmensajeoperacion("Especie->modificar: " . $this->getError());
+            $this->setmensajeoperacion( $this->getError());
         }
         return $resp;
     }
@@ -99,10 +99,10 @@ class Rol extends BaseDatos {
             if ($this->Ejecutar($sql)) {
                 return true;
             } else {
-                $this->setmensajeoperacion("Especie->eliminar: " . $this->getError());
+                $this->setmensajeoperacion( $this->getError());
             }
         } else {
-            $this->setmensajeoperacion("Especie->eliminar: " . $this->getError());
+            $this->setmensajeoperacion( $this->getError());
         }
         return $resp;
     }
@@ -114,7 +114,7 @@ class Rol extends BaseDatos {
             $sql .= 'WHERE ' . $parametro;
         }
         if ($this->Iniciar()) {
-            //echo $sql;
+         
             $res = $this->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
@@ -126,7 +126,7 @@ class Rol extends BaseDatos {
                     }
                 }
             } else {
-                $this->setmensajeoperacion("Especie->listar: " . $this->getError());
+                $this->setmensajeoperacion( $this->getError());
             }
         }
         return $arreglo;

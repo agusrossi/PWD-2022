@@ -26,15 +26,15 @@ if (empty($compra) || !empty($compra->getColCompraEstados())) {
 
 $data['idcompra'] = $compraActual->getIdCompra();
 $colItemCompra = $compraActual->getColCompraItems();
-
 $colIdItems = [];
 // recorro los items y guardo sus id
 foreach ($colItemCompra as $item) {
 
     $colIdItems[] = $item->getObjProducto()->getIdProducto();
 }
+
 $objProd = new AbmProducto();
-$objProd = $objProd->buscar($data['idproducto']);
+$objProd = $objProd->buscar(['idproducto' => $data['idproducto']]);
 
 
 //verifico si el item que viene por parametro ya se encuentra en la compra
@@ -44,20 +44,23 @@ if (in_array($data['idproducto'], $colIdItems)) {
     $param = ['idproducto' => $data['idproducto'], 'idcompra' => $data['idcompra']];
     $item = $aux->buscar($param);
     $cant = $item[0]->getCiCantidad() + $data['cicantidad'];
+
     if ($data['cicantidad'] <= $objProd[0]->getProCantStock()) {
         $item[0]->setCiCantidad($cant);
         $item[0]->modificar();
-    }else{
-        header("Location: ../comprar.php");
+        $mensaje = ['icono' => 'success', 'mensaje' => 'Agregado con exito'];
+    } else {
+        $mensaje = ['icono' => 'error', 'mensaje' => 'Producto sin stock'];
     }
 } else {
 
-
     if ($data['cicantidad'] <= $objProd[0]->getProCantStock()) {
+
         $item = new AbmCompraItem();
         $aux = $item->alta($data);
+        $mensaje = ['icono' => 'success', 'mensaje' => 'Agregado con exito'];
     } else {
-        header("Location: ../comprar.php?error=1");
+        $mensaje = ['icono' => 'error', 'mensaje' => 'Producto sin stock'];
     }
 }
-header("Location: ../carrito.php");
+echo json_encode($mensaje);

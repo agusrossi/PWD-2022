@@ -81,7 +81,7 @@ class Usuario extends BaseDatos {
                 }
             }
         } else {
-            $this->setmensajeoperacion("Especies->listar: " . $this->getError());
+            $this->setmensajeoperacion( $this->getError());
         }
         return $resp;
     }
@@ -104,10 +104,10 @@ class Usuario extends BaseDatos {
                 $this->setidusuario($elid);
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Especie->insertar: " . $this->getError());
+                $this->setmensajeoperacion($this->getError());
             }
         } else {
-            $this->setmensajeoperacion("Especie->insertar: " . $this->getError());
+            $this->setmensajeoperacion($this->getError());
         }
         return $resp;
     }
@@ -122,10 +122,10 @@ class Usuario extends BaseDatos {
             if ($this->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setmensajeoperacion("Especie->modificar: " . $this->getError());
+                $this->setmensajeoperacion($this->getError());
             }
         } else {
-            $this->setmensajeoperacion("Especie->modificar: " . $this->getError());
+            $this->setmensajeoperacion($this->getError());
         }
         return $resp;
     }
@@ -136,38 +136,15 @@ class Usuario extends BaseDatos {
             if ($this->Ejecutar($sql)) {
                 return true;
             } else {
-                $this->setmensajeoperacion("Especie->eliminar: " . $this->getError());
+                $this->setmensajeoperacion($this->getError());
             }
         } else {
-            $this->setmensajeoperacion("Especie->eliminar: " . $this->getError());
+            $this->setmensajeoperacion($this->getError());
         }
         return $resp;
     }
 
-    // public function listar($parametro = "") {
-    //     $arreglo = array();
-    //     $sql = "SELECT * FROM usuario ";
-    //     if ($parametro != "") {
-    //         $sql .= 'WHERE ' . $parametro;
-    //     }
-    //     if ($this->Iniciar()) {
-    //         echo $sql;
-    //         $res = $this->Ejecutar($sql);
-    //         if ($res > -1) {
-    //             if ($res > 0) {
-    //                 while ($row = $this->Registro()) {
-    //                     $obj = new Usuario();
-    //                     $obj->setidusuario($row['idusuario']);
-    //                     $obj->cargar();
-    //                     array_push($arreglo, $obj);
-    //                 }
-    //             }
-    //         } else {
-    //             $this->setmensajeoperacion("Especie->listar: " . $this->getError());
-    //         }
-    //     }
-    //     return $arreglo;
-    // }
+
     public  function listar($parametro = "") {
         $arreglo = array();
 

@@ -103,7 +103,15 @@ $rolActual = $sesion->getRolActual();
       type: "post",
       url: "accion/agregarProducto.php",
       data: formData,
-
+      success: function(response) {
+        const datos = JSON.parse(response)
+        if (datos != '') {
+          Swal.fire({
+            icon: datos.icono,
+            title: datos.mensaje
+          })
+        }
+      }
     });
 
     this.cicantidad.value = null;

@@ -17,17 +17,26 @@
   <link rel="stylesheet" href="./assets/css/main.css">
 
   <!-- libreria jQuery_Easyui -->
-  <link rel="stylesheet" type="text/css" href="assets/jq_easyui/themes/default/easyui.css">
-  <link rel="stylesheet" type="text/css" href="assets/jq_easyui/themes/icon.css">
-  <link rel="stylesheet" type="text/css" href="assets/jq_easyui/themes/color.css">
-  <link rel="stylesheet" type="text/css" href="assets/jq_easyui/demo/demo.css">
-  <script type="text/javascript" src="assets/jq_easyui/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/jq_easyui/jquery.easyui.min.js"></script>
-  <script type="text/javascript" src="https://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
 
+  <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+  <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
+  <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
+  <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+  <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <!-- dataTable -->
 
-
-
+  <script src="   https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="  https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+  <link src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+  <!-- sweet alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php
 $res = $sesion->tienePermiso();
