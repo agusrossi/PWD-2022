@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $title; ?></title>
   <!-- Bootstrap CSS -->
-  <link href="./assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./assets/bootstrap/bootstrap.min.css" rel="stylesheet">
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -26,6 +26,7 @@
   <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
   <!-- Jquery -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  
   <!-- dataTable -->
 
   <script src="   https://code.jquery.com/jquery-3.5.1.js"></script>
