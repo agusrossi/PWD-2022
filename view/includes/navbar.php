@@ -141,7 +141,7 @@ if ($sesion->activa()) {
             <button type="submit" class="btn btn-outline-dark">
               Iniciar Sesión
             </button>
-            <a class="btn btn-outline-dark" role= 'button' href="registrarse.php">Registrarse</a>
+            <a class="btn btn-outline-dark" role='button' href="registrarse.php">Registrarse</a>
             <!-- <a class="btn btn-outline-dark btnCarro ms-3" href="" type="button"></a> -->
 
           </form>
@@ -153,6 +153,6 @@ if ($sesion->activa()) {
   </div>
 </nav>
 <?php
-  
+
 ?>
 <script src="./assets/js/validation.js"></script>

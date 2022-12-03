@@ -82,14 +82,6 @@ $rolActual = $sesion->getRolActual();
 </div>
 
 <script>
-  <?php
-  $data = data_submitted();
-  if (array_key_exists("error", $data) && $data["error"] == 1) { ?>
-    alert("producto sin stock");
-  <?php } ?>
-</script>
-
-<script>
   $("form").submit(function(event) {
 
     var formData = {
@@ -103,6 +95,7 @@ $rolActual = $sesion->getRolActual();
       type: "post",
       url: "accion/agregarProducto.php",
       data: formData,
+      dataType: 'json',
       success: function(response) {
         const datos = JSON.parse(response)
         if (datos != '') {

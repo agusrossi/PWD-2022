@@ -88,17 +88,13 @@ class Usuario extends BaseDatos {
 
     public function insertar() {
         $resp = false;
-        echo '<pre>';
-        var_dump($this->getUsDeshabilitado());
-        echo '</pre>';
+      
         if ($this->getUsDeshabilitado() == null || $this->getUsDeshabilitado() == "null") {
-            $sql = "INSERT INTO usuario (usnombre, uspass, usmail, usdeshabilitado) VALUES (' {$this->getUsNombre()}','{$this->getUsPass()}', '{$this->getUsMail()}', NULL)";
+            $sql = "INSERT INTO usuario (usnombre, uspass, usmail, usdeshabilitado) VALUES ('{$this->getUsNombre()}','{$this->getUsPass()}', '{$this->getUsMail()}', NULL)";
         } else {
             $sql = "INSERT INTO usuario (usnombre, uspass, usmail, usdeshabilitado) VALUES ('{$this->getUsNombre()}','{$this->getUsPass()}','{$this->getUsMail()}','{$this->getUsDeshabilitado()}')";
         }
-        echo '<pre>';
-        var_dump($sql);
-        echo '</pre>';
+       
         if ($this->Iniciar()) {
             if ($elid = $this->Ejecutar($sql)) {
                 $this->setidusuario($elid);

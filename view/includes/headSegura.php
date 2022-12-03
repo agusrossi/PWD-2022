@@ -46,4 +46,4 @@ if (!$res) {
 }
 ?>
 
-<body>
+<body class='p-0'>
