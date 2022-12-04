@@ -33,7 +33,17 @@ if ($sesion->activa()) {
   <div class="container-fluid">
 
     <!-- Imagen logo, con link a la pagina de inicio-->
-    <a class="navbar-brand mx-5" href="comprar.php"><img src="assets/imagenes/titulo.png" alt="" style="width: 75px;"></a>
+    <?php
+    if ($sesion->activa()) {
+    ?>
+      <a class="navbar-brand mx-5" href="comprar.php"><img src="assets/imagenes/titulo.png" alt="" style="width: 75px;"></a>
+    <?php
+    } else {
+    ?>
+      <a class="navbar-brand mx-5" href="indexIns.php"><img src="assets/imagenes/titulo.png" alt="" style="width: 75px;"></a>
+    <?php
+    }
+    ?>
 
     <!-- Boton nav responsive -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

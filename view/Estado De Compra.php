@@ -1,21 +1,25 @@
-<?php $title = 'Administrar usuarios';
+<?php $title = 'Compra estado';
 include_once('../config.php');
-include_once './includes/head.php';
-include_once "./includes/navbar.php";
+include_once('./includes/head.php');
+include_once("./includes/navbar.php");
 ?>
 
 <?php
 $data = data_submitted();
 $tieneAcceso = $sesion->controlAcceso($data);
 
-$objCompraEstado = new AbmCompraEstado();
-$colCompraEst = $objCompraEstado->buscar(['idusuario' => ($sesion->getObjUsuario()->getIdusuario()), ]);
-$abmCET = new AbmCompraEstadoTipo();
-$estados = $abmCET->buscar(null);
-
-
 
 if ($tieneAcceso) {
+
+  $objCompraEstado = new AbmCompraEstado();
+
+  $abmCET = new AbmCompraEstadoTipo();
+  $estados = $abmCET->buscar(null);
+  $colCompras = new AbmCompra();
+
+  $colCompras = $colCompras->buscar(['idusuario' => ($sesion->getObjUsuario()->getIdusuario())]);
+
+
 ?>
   <div class="container pt-5">
     <table class="table" id="estadoCompra">
@@ -29,43 +33,43 @@ if ($tieneAcceso) {
         </tr>
       </thead>
       <tbody>
-        <?php if (isset($colCompraEst)) {
-          foreach ($colCompraEst as $compraEst) {
-
+        <?php
+        foreach ($colCompras as $key => $compra) {
+          $colCompraEst = $objCompraEstado->buscar(['idcompra' => $compra->getIdCompra()]);
         ?>
-            <tr style="border-bottom:2px solid white;">
-              <td scope="row"><?= $compraEst->getObjCompra()->getIdCompra() ?></td>
-              <td><?= $compraEst->getObjCompraEstTipo()->getCetDescripcion() ?></td>
-              <td><?= $compraEst->getCeFechaIni() ?></td>
-              <td><?= $compraEst->getCeFechaFin() ?></td>
-              <td><select idcompra="<?= $compraEst->getObjCompra()->getIdCompra() ?>" class="select-estado-tipo form-select" name="estado" id="">
-                  <?php
-                  foreach ($estados as $tipoEstado) {
-                    if ($tipoEstado->getIdCompraEstTipo() == 1 || $tipoEstado->getIdCompraEstTipo() == 4) {
-                      if ($compraEst->getObjCompraEstTipo()->getIdCompraEstTipo() == $tipoEstado->getIdCompraEstTipo()) {
-                  ?>
-                        <option selected value="<?= $tipoEstado->getIdCompraEstTipo() ?>">
-                          <?= $tipoEstado->getCetDescripcion()  ?>
-                        </option><?php
-                                } else {
-                                  ?>
-                        <option value="<?= $tipoEstado->getIdCompraEstTipo() ?>">
-                          <?= $tipoEstado->getCetDescripcion()  ?>
-                        </option>
-                  <?php }
-                              }
-                            }
-                  ?>
-                </select></td>
+          <?php if (isset($colCompraEst)) {
+            foreach ($colCompraEst as $compraEst) {
+              // $compraEst = $compraEst[0];
+          ?>
+              <tr style="border-bottom:2px solid white;">
+                <td scope="row"><?= $compraEst->getObjCompra()->getIdCompra() ?></td>
+                <td><?= $compraEst->getObjCompraEstTipo()->getCetDescripcion() ?></td>
+                <td><?= $compraEst->getCeFechaIni() ?></td>
+                <td><?= $compraEst->getCeFechaFin() ?></td>
+                <td><select idcompra="<?= $compraEst->getObjCompra()->getIdCompra() ?>" class="select-estado-tipo form-select" name="estado" id="">
+                    <?php
+                    foreach ($estados as $tipoEstado) {
+                      if ($tipoEstado->getIdCompraEstTipo() == 1 || $tipoEstado->getIdCompraEstTipo() == 4) {
+                        if ($compraEst->getObjCompraEstTipo()->getIdCompraEstTipo() == $tipoEstado->getIdCompraEstTipo()) { ?>
+                          <option selected value="<?= $tipoEstado->getIdCompraEstTipo() ?>"><?= $tipoEstado->getCetDescripcion() ?>
+                          </option>
+                        <?php } else { ?>
+                          <option value="<?= $tipoEstado->getIdCompraEstTipo() ?>">
+                            <?= $tipoEstado->getCetDescripcion()  ?>
+                          </option><?php } ?>
+                      <?php  } ?>
+                    <?php } ?>
+                  </select></td>
 
+              </tr>
+            <?php
+            }
+          } else { ?>
+            <tr>
+              <td colspan="6" style="text-align: center;">No se encontraron compras registrados</td>
             </tr>
-          <?php
-          };
-        } else { ?>
-          <tr>
-            <td colspan="6" style="text-align: center;">No se encontraron compras registrados</td>
-          </tr>
-        <?php } ?>
+        <?php }
+        } ?>
       </tbody>
     </table>
   </div>
@@ -98,7 +102,8 @@ if ($tieneAcceso) {
   </div>
 
 <?php
-}
+};
+
 ?>
 
 <?php include_once "./includes/footer.php"; ?>

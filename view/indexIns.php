@@ -74,16 +74,19 @@ $rolActual = $sesion->getRolActual();
     <?php
     $data = data_submitted();
     if (array_key_exists("error", $data) && $data["error"] == 1) { ?>
-        alert("Usuario y/o contraseña incorrectos.");
+        Swal.fire('Usuario y/o contraseña incorrectos');
+
     <?php } ?>
     <?php if (array_key_exists("error", $data) && $data["error"] == 3) { ?>
-        alert("El usuario se encuentra dado de baja.");
+        Swal.fire('Usuario no tiene rol asignado')
+
     <?php } ?>
     <?php if (array_key_exists("error", $data) && $data["error"] == 2) { ?>
-        alert("Usuario no tiene rol asignado");
+        Swal.fire('El usuario se encuentra dado de baja')
     <?php } ?>
     <?php if (array_key_exists("error", $data) && $data["error"] == 4) { ?>
-        alert("No tiene permiso para esta pagina");
+
+        Swal.fire('No tiene permiso para la pagina')
     <?php } ?>
 </script>
 

@@ -8,7 +8,7 @@ $data = data_submitted();
 $tieneAcceso = $sesion->controlAcceso($data);
 if ($tieneAcceso) { ?>
   <h3> tiene permiso para esta pag</h3>
-<h4>PROXIMAMENTE LISTA USUARIOS</h4>
+<h4>PROXIMAMENTE LISTA ASIGNAR ROLES</h4>
 <?php } else { ?>
   <div class="container d-flex justify-content-center align-items-start text-center mt-5">
     <div class="alert alert-danger mt-20vh" role="alert">

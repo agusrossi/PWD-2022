@@ -143,7 +143,7 @@ class Compra extends BaseDatos {
   public function eliminar() {
     $resp = false;
     $sql = "DELETE FROM compra WHERE idcompra = {$this->getIdCompra()}";
-   
+
     if ($this->Iniciar()) {
       if ($this->Ejecutar($sql)) {
         return true;
@@ -179,7 +179,7 @@ class Compra extends BaseDatos {
         }
       }
     }
-
+   
     return $arreglo;
   }
 }

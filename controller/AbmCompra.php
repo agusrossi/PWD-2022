@@ -130,6 +130,7 @@ class AbmCompra {
    * @return array
    */
   public function buscar($datos) {
+
     $where = " true ";
     if ($datos <> NULL) {
       if (isset($datos['idcompra']))
@@ -140,7 +141,8 @@ class AbmCompra {
         $where .= " and idusuario = {$datos['idusuario']}";
     }
     $obj = new Compra();
-    return $obj->listar($where);
+    $obj = $obj->listar($where);
+    return $obj;
   }
   public function getUltimaCompra($idUsuario) {
     $where = " idusuario=" . $idUsuario . " ORDER BY idcompra DESC LIMIT 1";

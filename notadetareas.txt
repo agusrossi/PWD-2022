@@ -2,10 +2,12 @@
 
 --> Mostrar errores en el carrito --> listo
 
---> Mostrar solo las compras del cliente, si el usuario es cliente
+--> Mostrar solo las compras del cliente, si el usuario es cliente -->LISTOOOO
 
---> Solo el Admin puede ver y cambiar el estado de todas las compras 
+--> Solo el Admin puede ver y cambiar el estado de todas las compras  -> LISTOOOO
 
 --> La operacion tiene permisos, debe verificar los roles --> ya ta(ponerla en todas las pag)
 
 --> Al cargar una compra debe tener un estado
+
+checkBox= name="roles[]"

@@ -12,6 +12,7 @@ if (empty($encontrado)) {
     $res = $user->abm($param);
     if ($res) {
         $usuario = $user->buscar(['usnombre' => $data['usnombre'], 'usmail' => $data['usmail']]);
+
         $param = ['accion' => 'nuevo_rol', 'idusuario' => $usuario[0]->getIdusuario(), 'idrol' => 3];
 
         $r = $user->abm($param);

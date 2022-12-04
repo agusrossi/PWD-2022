@@ -51,7 +51,18 @@ $rolActual = $sesion->getRolActual();
 
                   </div>
                   <div class="text-center p-2">
-                    <p style="color: grey;">Stock disponible: <?= $producto->getProCantStock()  ?> </p>
+                    <?php
+                    if ($producto->getProCantStock() > 0) {
+                    ?>
+                      <p style="color: grey;">Stock disponible: <?= $producto->getProCantStock()  ?> </p>
+
+                    <?php
+                    } else {
+                    ?>
+                      <p style="color: grey;">Stock disponible: <span style="color: red;">sin stock</span> </p>
+                    <?php
+                    }
+                    ?>
                   </div>
                 </div>
                 <!-- accion producto-->
@@ -97,7 +108,9 @@ $rolActual = $sesion->getRolActual();
       data: formData,
       dataType: 'json',
       success: function(response) {
-        const datos = JSON.parse(response)
+        console.log(response);
+        const datos = (response)
+        console.log(datos);
         if (datos != '') {
           Swal.fire({
             icon: datos.icono,
@@ -105,10 +118,14 @@ $rolActual = $sesion->getRolActual();
           })
         }
       }
-    });
 
+    });
     this.cicantidad.value = null;
     event.preventDefault();
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
+
   });
 </script>
 <?php include_once 'includes/footer.php' ?>
