@@ -6,9 +6,7 @@ $abmUs = new AbmUsuario();
 // $abmUs->altaBajaUsuario();
 $listaUsuarios = $abmUs->listar();
 $usuarioEsRol = $abmUs->esRol($sesion);
-echo '<pre>';
-var_dump($listaUsuarios);
-echo '</pre>';
+
 ?>
 
 

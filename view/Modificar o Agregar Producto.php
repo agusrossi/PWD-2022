@@ -137,10 +137,22 @@ if ($tieneAcceso) { ?>
                                                         <label for="precio">Precio</label>
                                                         <input type="number" name="precio" class="form-control" id="precio<?= $key ?>" value='<?= $producto->getPrecio() ?>' required>
                                                     </div>
+                                                    <?php
+                                                    $date = $producto->getProDeshabilitado();
+                                                    if ($date != null && $date != '0000-00-00 00:00:00') {
+                                                        //converts date and time to seconds  
+                                                        $sec = strtotime($date);
+                                                        //converts seconds into a specific format  
+                                                        $newdate = date("Y-m-d", $sec);
+                                                    } else {
+                                                        $newdate = NULL;
+                                                    }
+                                                    echo $newdate;
+                                                    ?>
                                                     <!-- Deshabilitado -->
                                                     <div class="form-group mb-3">
                                                         <label for="deshabilitado">Deshabilitado</label>
-                                                        <input type="date" name="deshabilitado" class="form-control" id="deshabilitado<?= $key ?>" value='<?= $producto->getProDeshabilitado()  ?>' required>
+                                                        <input type="date" name="deshabilitado" class="form-control" id="deshabilitado<?= $key ?>" value='<?= $newdate  ?>' required>
                                                     </div>
 
                                                 </form>
@@ -230,7 +242,7 @@ if ($tieneAcceso) { ?>
             'pronombre': pronombre.value,
             'procantstock': procantstock.value,
             'precio': proprecio.value,
-            'prodeshabilitado': prodeshabilitado.getAttribute('value'),
+            'prodeshabilitado': prodeshabilitado.value,
             'accion': accion
         }
 
@@ -238,10 +250,11 @@ if ($tieneAcceso) { ?>
             type: "post",
             url: "accion/agregarModProd.php",
             data: formData,
-
+            dataType: 'json',
             success: function(response) {
+
                 const datos = (response)
-                console.log(datos);
+
                 if (datos != '') {
                     Swal.fire({
                         icon: datos.icono,

@@ -124,10 +124,7 @@ class Producto extends BaseDatos {
       precio = {$this->getPrecio()},
         prodeshabilitado = " . (($this->getProDeshabilitado() == NULL) ? 'NULL' : "'{$this->getProDeshabilitado()}'") . "
       WHERE idproducto = {$this->getIdProducto()}";
-    echo '<pre>';
-    var_dump($sql);
-    echo '</pre>';
-    // echo $sql;
+   
     if ($this->Iniciar()) {
       if ($this->Ejecutar($sql) > -1) { // Modificar si hace falta o cambiar el modifcar producto
         $resp = true;

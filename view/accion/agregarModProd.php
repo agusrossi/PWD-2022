@@ -12,14 +12,15 @@ if (!empty($data)) {
     if ($data['accion'] == 'eliminar') {
         $mensaje = eliminarProd($data);
     }
-    json_encode($mensaje);
+    echo json_encode($mensaje);
 }
 function nuevoProd($data) {
+
     $abmProd = new AbmProducto();
-  
+
     $param = ['accion' => 'nuevo', 'pronombre' => $data['pronombre'], 'prodetalle' => $data['prodetalle'], 'procantstock' => $data['procantstock'], 'precio' => $data['precio'], 'prodeshabilitado' => null];
     $prod = $abmProd->abm($param);
- 
+
     if ($prod) {
         $mensaje = ['icono' => 'success', 'mensaje' => 'Se agrego correctamente'];
     } else {
@@ -29,16 +30,21 @@ function nuevoProd($data) {
 }
 
 function modificarProd($data) {
+
     $abmProd = new AbmProducto();
-    if ($data['prodeshabilitado'] == '0000-00-00 00:00') {
-        $data['prodeshabilitado'] = null;
+
+    if ($data['prodeshabilitado'] != 'null') {
+        $data['prodeshabilitado'] = date('Y-m-d H:i:s');
+    } else {
+        $data['prodeshabilitado'] = NULL;
     }
+
     $param = ['idproducto' => $data['idproducto'], 'prodetalle' => $data['prodetalle'], 'pronombre' => $data['pronombre'], 'procantstock' => $data['procantstock'], 'precio' => $data['precio'], 'prodeshabilitado' => $data['prodeshabilitado'], 'accion' => 'editar'];
 
     $prod = $abmProd->abm($param);
 
     if ($prod) {
-        $mensaje = ['icono' => 'success', 'mensaje' => 'Se modico correctamente'];
+        $mensaje = ['icono' => 'success', 'mensaje' => 'Se modifico correctamente'];
     } else {
         $mensaje = ['icono' => 'error', 'mensaje' => 'No se pudo modificar'];
     }
