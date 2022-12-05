@@ -4,22 +4,23 @@ class AbmProducto {
   public function abm($datos) {
     $resp = false;
     if ($datos['accion'] == 'editar') {
-        if ($this->modificacion($datos)) {
-            $resp = true;
-        }
+      if ($this->modificacion($datos)) {
+        $resp = true;
+      }
+     
     }
     if ($datos['accion'] == 'borrar') {
-        if ($this->baja($datos)) {
-            $resp = true;
-        }
+      if ($this->baja($datos)) {
+        $resp = true;
+      }
     }
     if ($datos['accion'] == 'nuevo') {
-        if ($this->alta($datos)) {
-            $resp = true;
-        }
+      if ($this->alta($datos)) {
+        $resp = true;
+      }
     }
     return $resp;
-}
+  }
   /**
    * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
    * @param array $param
@@ -27,7 +28,7 @@ class AbmProducto {
    */
   private function cargarObjeto($param) {
     $obj = null;
-
+    
     if (
       array_key_exists('idproducto', $param) &&
       array_key_exists('pronombre', $param) &&
@@ -40,6 +41,7 @@ class AbmProducto {
 
       $obj->setear($param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['precio'], $param['prodeshabilitado']);
     }
+   
     return $obj;
   }
 

@@ -9,20 +9,25 @@ $compraActual = new AbmCompra();
 $compra = $compra->getUltimaCompra($sesion->getObjUsuario()->getIdUsuario());
 
 /**
- * CORREGIR :tiene que tener estado = 1(iniciada) o generar un nuevo estado que sea precarga
+ *
  * si la ultima compra tiene estado 
  */
 
-if (empty($compra) || !empty($compra->getColCompraEstados())) {
+if (empty($compra)) {
+    
     $data['cofecha'] = date('Y-m-d H:i:s');
+    $objEstado = new AbmCompraEstado();
     $abmcompra = new AbmCompra();
     $datosCompra = $abmcompra->alta($data);
     $compraActual = $compraActual->buscar(['idcompra' => $datosCompra['idcompra']])[0];
+    $param = ['idcompra' => $compraActual->getIdCompra(), 'idcompraestadotipo' => 0, 'cefechaini' => date('Y-m-d H:i:s'), 'cefechafin' => null];
+    $objEstado = $objEstado->alta($param);
 } else {
 
-    $compraActual = $compra;
+    $compraActual = $compra->getObjCompra();
 }
 //busco si la compra tiene items
+
 
 $data['idcompra'] = $compraActual->getIdCompra();
 $colItemCompra = $compraActual->getColCompraItems();

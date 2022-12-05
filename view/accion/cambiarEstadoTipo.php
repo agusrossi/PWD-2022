@@ -15,7 +15,7 @@ if (!empty($compraEstado)) {
         'accion' => 'nuevo',
         'idcompra' => $data['idcompra'],
         'idcompraestadotipo' => $data['idcompraestadotipo'],
-        'cefechaini' => date('Y-m-d H:i:s'),
+        'cefechaini' => $compraEstado[0]->getCeFechaFin(),
         'cefechafin' => null
     ];
 

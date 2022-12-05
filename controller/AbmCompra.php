@@ -145,13 +145,15 @@ class AbmCompra {
     return $obj;
   }
   public function getUltimaCompra($idUsuario) {
-    $where = " idusuario=" . $idUsuario . " ORDER BY idcompra DESC LIMIT 1";
-    $obj = new Compra;
-    $res = $obj->listar($where);
-    if (count($res) > 0) {
-      $res = $res[0];
+
+    $objEstado = new AbmCompraEstado();
+    $ultima = $objEstado->buscar(['idusuario' => $idUsuario, 'idcompraestadotipo' => 0, 'cefechafin' => '0000-00-00 00:00:00
+    ']);
+
+    if (count($ultima) > 0) {
+      $ultima = $ultima[0];
     }
-    return $res;
+    return $ultima;
   }
 
   public function getColItems($idCompra) {

@@ -1,4 +1,4 @@
-<?php $title = 'Administrar usuarios';
+<?php $title = 'Modificar productos';
 include_once('../config.php');
 include_once './includes/head.php';
 include_once "./includes/navbar.php";
@@ -24,7 +24,7 @@ if ($tieneAcceso) { ?>
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalAgregarLabel">Modal title</h1>
+                            <h1 class="modal-title fs-5" id="modalAgregarLabel">Nuevo Producto</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -51,7 +51,7 @@ if ($tieneAcceso) { ?>
                                 <!-- Precio -->
                                 <div class="form-group mb-3">
                                     <label for="precio">Precio</label>
-                                    <input type="number" name="precio" class="form-control" id="precioN">
+                                    <input type="number" name="precio" class="form-control" id="precioN" required>
                                 </div>
 
                             </form>
@@ -117,7 +117,7 @@ if ($tieneAcceso) { ?>
                                                     <!-- Producto -->
                                                     <div class="form-group mb-3">
                                                         <label for="producto">Producto</label>
-                                                        <input type="producto" name="producto" class="form-control" id="producto<?= $key ?>" value='<?= $producto->getIdProducto() ?>' required>
+                                                        <input type="producto" name="producto" class="form-control" id="producto<?= $key ?>" value='<?= $producto->getIdProducto() ?>' disabled>
                                                     </div>
 
                                                     <!-- Nombre -->
@@ -135,12 +135,12 @@ if ($tieneAcceso) { ?>
                                                     <!-- Precio -->
                                                     <div class="form-group mb-3">
                                                         <label for="precio">Precio</label>
-                                                        <input type="number" name="precio" class="form-control" id="precio<?= $key ?>" value='<?= $producto->getPrecio() ?>'>
+                                                        <input type="number" name="precio" class="form-control" id="precio<?= $key ?>" value='<?= $producto->getPrecio() ?>' required>
                                                     </div>
                                                     <!-- Deshabilitado -->
                                                     <div class="form-group mb-3">
                                                         <label for="deshabilitado">Deshabilitado</label>
-                                                        <input type="date" name="deshabilitado" class="form-control" id="deshabilitado<?= $key ?>" value='<?= $producto->getProDeshabilitado()  ?>'>
+                                                        <input type="date" name="deshabilitado" class="form-control" id="deshabilitado<?= $key ?>" value='<?= $producto->getProDeshabilitado()  ?>' required>
                                                     </div>
 
                                                 </form>
@@ -199,16 +199,16 @@ if ($tieneAcceso) { ?>
             type: "post",
             url: "accion/agregarModProd.php",
             data: formData,
-            // dataType: 'json',
+            dataType: 'json',
             success: function(response) {
                 const datos = (response)
                 console.log(datos);
-                // if (datos != '') {
-                //     Swal.fire({
-                //         icon: datos.icono,
-                //         title: datos.mensaje
-                //     })
-                // }
+                if (datos != '') {
+                    Swal.fire({
+                        icon: datos.icono,
+                        title: datos.mensaje
+                    })
+                }
             }
 
         });
@@ -233,21 +233,21 @@ if ($tieneAcceso) { ?>
             'prodeshabilitado': prodeshabilitado.getAttribute('value'),
             'accion': accion
         }
-        console.log(formData);
+
         $.ajax({
             type: "post",
             url: "accion/agregarModProd.php",
             data: formData,
-            // dataType: 'json',
+
             success: function(response) {
                 const datos = (response)
                 console.log(datos);
-                // if (datos != '') {
-                //     Swal.fire({
-                //         icon: datos.icono,
-                //         title: datos.mensaje
-                //     })
-                // }
+                if (datos != '') {
+                    Swal.fire({
+                        icon: datos.icono,
+                        title: datos.mensaje
+                    })
+                }
             }
 
         });

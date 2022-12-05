@@ -98,19 +98,19 @@ class Producto extends BaseDatos {
   public function insertar() {
     $resp = false;
     $sql = "
-    INSERT INTO producto (pronombre, prodetalle, procantstock, precio, preciooferta, prodeshabilitado) 
-    VALUES ('{$this->getProNombre()}', '{$this->getProDetalle()}', {$this->getProCantStock()}, {$this->getPrecio()}," . ", " . (($this->getProDeshabilitado() == NULL) ? 'NULL' : "'{$this->getProDeshabilitado()}'") . ")";
-
+    INSERT INTO producto (pronombre, prodetalle, procantstock, precio, prodeshabilitado) 
+    VALUES ('{$this->getProNombre()}', '{$this->getProDetalle()}', {$this->getProCantStock()}, {$this->getPrecio()}," . (($this->getProDeshabilitado() == NULL) ? 'NULL' : "'{$this->getProDeshabilitado()}'") . ")";
+   ;
     if ($this->Iniciar()) {
       if ($id = $this->Ejecutar($sql)) {
         $this->setIdProducto($id);
 
         $resp = true;
       } else {
-        $this->setMsjError("Tabla->insertar: {$this->getError()[2]}");
+        $this->setMsjError($this->getError()[2]);
       }
     } else {
-      $this->setMsjError("Tabla->insertar: {$this->getError()[2]}");
+      $this->setMsjError($this->getError()[2]);
     }
     return $resp;
   }
@@ -124,6 +124,9 @@ class Producto extends BaseDatos {
       precio = {$this->getPrecio()},
         prodeshabilitado = " . (($this->getProDeshabilitado() == NULL) ? 'NULL' : "'{$this->getProDeshabilitado()}'") . "
       WHERE idproducto = {$this->getIdProducto()}";
+    echo '<pre>';
+    var_dump($sql);
+    echo '</pre>';
     // echo $sql;
     if ($this->Iniciar()) {
       if ($this->Ejecutar($sql) > -1) { // Modificar si hace falta o cambiar el modifcar producto
@@ -144,10 +147,10 @@ class Producto extends BaseDatos {
       if ($this->Ejecutar($sql)) {
         return true;
       } else {
-        $this->setMsjError("Tabla->eliminar: {$this->getError()}");
+        $this->setMsjError(" $this->getError()");
       }
     } else {
-      $this->setMsjError("Tabla->eliminar: {$this->getError()}");
+      $this->setMsjError("$this->getError()");
     }
     return $resp;
   }

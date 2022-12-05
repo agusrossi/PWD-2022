@@ -20,19 +20,25 @@ if ($data['accion'] === 'borrarItem') {
 
 function comprar($data) {
     $estado = new AbmCompraEstado();
-    $param = ['accion' => 'nuevo', 'idcompra' => $data['idcompra'], 'idcompraestadotipo' => 1, 'cefechaini' => date('Y-m-d H:i:s'), 'cefechafin' => null];
-    $res = $estado->abm($param);
-    $abmComItem = new AbmCompraItem();
-    $colComItem = $abmComItem->buscar(['idcompra' => $data['idcompra']]);
+    $objEs = $estado->buscar(['idcompra' => $data['idcompra'], 'idcompraestadotipo' => 0, 'cefechafin' => null]);
+    if (!empty($objEs)) {
+        $objEs[0]->setCeFechaFin(date('Y-m-d H:i:s'));
+        $objEs[0]->modificar();
+        $param = ['accion' => 'nuevo', 'idcompra' => $data['idcompra'], 'idcompraestadotipo' => 1, 'cefechaini' => date('Y-m-d H:i:s'), 'cefechafin' => null];
 
-    foreach ($colComItem as $colItem) {
-        $objProd = $colItem->getObjProducto();
-        $cant = $objProd->getProCantStock();
-        $cantidadVend = $colItem->getCiCantidad();
+        $res = $estado->abm($param);
+        $abmComItem = new AbmCompraItem();
+        $colComItem = $abmComItem->buscar(['idcompra' => $data['idcompra']]);
 
-        if ($cant >= $cantidadVend) {
-            $objProd->setProCantStock(intval($cant - $cantidadVend));
-            $objProd->modificar();
+        foreach ($colComItem as $colItem) {
+            $objProd = $colItem->getObjProducto();
+            $cant = $objProd->getProCantStock();
+            $cantidadVend = $colItem->getCiCantidad();
+
+            if ($cant >= $cantidadVend) {
+                $objProd->setProCantStock(intval($cant - $cantidadVend));
+                $objProd->modificar();
+            }
         }
     }
 }

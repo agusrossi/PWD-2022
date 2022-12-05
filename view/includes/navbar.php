@@ -18,8 +18,9 @@ if ($sesion->activa()) {
 
   $ultimaCompra = $abmCompra->getUltimaCompra($sesion->getObjUsuario()->getIdUsuario());
   $cantItem = 0;
-  if ($ultimaCompra && empty($ultimaCompra->getColCompraEstados())) {
-    foreach ($ultimaCompra->getColCompraItems() as $item) {
+
+  if (!empty($ultimaCompra) && ($ultimaCompra->getObjCompraEstTipo()->getIdCompraEstTipo() == 0)) {
+    foreach ($ultimaCompra->getObjCompra()->getColCompraItems() as $item) {
       $cantItem++;
     }
   }
